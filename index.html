@@ -11,32 +11,30 @@
 <title>CDC-LOE</title>
 
 <style>
-body { font-size:16px; }
+/* ===== BASE ===== */
+body {
+    font-size: 16px;
+}
 
 .canvas_div_pdf {
     position: relative;
     font-family: "Times New Roman", serif;
 }
 
-/* STAMP */
+/* ===== STAMP ===== */
 .stamp-s {
-    width:200px;
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top:75px;
+    width: 200px;
+    position: absolute;
+    left: 50%;
+    top: 75px;
+    transform: translateX(-50%);
 }
 
-/* ROTATED BOTTOM SECTION */
-.rotated-section {
-    margin-top:120px;
-}
-
-/* ===== ROTATED BOTTOM SECTION BASE ===== */
+/* ===== ROTATED SECTION BASE ===== */
 .rotated-section {
     width: 100%;
     margin-top: 120px;
-    overflow: visible;   /* IMPORTANT: prevents mobile clipping */
+    overflow: visible; /* CRITICAL for mobile */
 }
 
 .rotated-inner {
@@ -60,52 +58,32 @@ body { font-size:16px; }
     text-align: justify;
 }
 
-/* 📱 MOBILE FIX */
+/* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
     .rotated-inner {
         flex-direction: column;
         align-items: center;
         text-align: center;
-}
+    }
 
     .rotated-qr img {
         width: 110px;
         margin-bottom: 15px;
-    
+    }
 }
 
-/* 🖨️ PRINT ONLY (CDC STYLE) */
+/* ===== PRINT / PDF ONLY (CDC STYLE) ===== */
 @media print {
+    nav,
+    footer,
+    #downloadbtn {
+        display: none !important;
+    }
+
     .rotated-inner {
         transform: rotate(180deg);
         page-break-inside: avoid;
-}
-
-
-.rotated-qr img {
-    width:120px;
-}
-
-.rotated-text {
-    font-size:0.85rem;
-    line-height:1.6;
-    max-width:600px;
-    text-align:justify;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-    .rotated-inner{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
     }
-    .rotated-qr img{ width:100px; }
-}
-
-/* PRINT */
-@media print{
-    nav, footer, #downloadbtn { display:none !important; }
 }
 </style>
 </head>
@@ -113,91 +91,99 @@ body { font-size:16px; }
 <body>
 
 <div class="container mt-5 mb-5">
-<div class="text-end d-none d-lg-flex justify-content-end">
-<button onclick="getPDF()" class="btn btn-primary btn-sm" id="downloadbtn">
-<i class="bi-file-arrow-down"></i> Download CDC LOE
-</button>
-</div>
+    <div class="text-end d-none d-lg-flex justify-content-end">
+        <button onclick="getPDF()" class="btn btn-primary btn-sm" id="downloadbtn">
+            <i class="bi-file-arrow-down"></i> Download CDC LOE
+        </button>
+    </div>
 
-<div class="border rounded mb-5 mt-3">
-<div class="canvas_div_pdf p-5">
+    <div class="border rounded mb-5 mt-3">
+        <div class="canvas_div_pdf p-5">
 
-<div class="stamp-s">
-<img src="https://loe.moecdc.gov.np/front/img/stamp.png" class="w-100">
-</div>
+            <!-- STAMP -->
+            <div class="stamp-s">
+                <img src="https://loe.moecdc.gov.np/front/img/stamp.png" class="w-100">
+            </div>
 
-<div class="d-flex flex-column flex-lg-row justify-content-between text-danger mb-5">
-<div style="width:105px;">
-<img src="https://loe.moecdc.gov.np/storage/photos/3/Emblem_of_Nepal_(2020).png" class="w-100">
-</div>
+            <!-- HEADER -->
+            <div class="d-flex flex-column flex-lg-row justify-content-between text-danger mb-5">
+                <div style="width:105px;">
+                    <img src="https://loe.moecdc.gov.np/storage/photos/3/Emblem_of_Nepal_(2020).png" class="w-100">
+                </div>
 
-<div class="text-center fw-bold" style="line-height:1.2;">
-<div class="fs-4">Government of Nepal</div>
-<div class="fs-4">Ministry of Education, Science and Technology</div>
-<div class="fs-1">Curriculum Development Centre</div>
-<div class="fs-4">Sanothimi, Bhaktapur</div>
-</div>
+                <div class="text-center fw-bold" style="line-height:1.2;">
+                    <div class="fs-4">Government of Nepal</div>
+                    <div class="fs-4">Ministry of Education, Science and Technology</div>
+                    <div class="fs-1">Curriculum Development Centre</div>
+                    <div class="fs-4">Sanothimi, Bhaktapur</div>
+                </div>
 
-<div class="text-end fs-5 fw-bold">
-Phone : 6630588, 6634119, 6630088<br>
-Fax : 6630797<br>
-Notice Board : 1618016630797<br>
-www.moecdc.gov.np
-</div>
-</div>
+                <div class="text-end fs-5 fw-bold">
+                    Phone : 6630588, 6634119, 6630088<br>
+                    Fax : 6630797<br>
+                    Notice Board : 1618016630797<br>
+                    www.moecdc.gov.np
+                </div>
+            </div>
 
-<div class="d-flex justify-content-between fs-4 mb-5">
-<div>
-<strong>Ref No. :-</strong> 2081-82-17591<br>
-<strong>Reg. No :-</strong> 2081/82-00015989
-</div>
-<div>
-<strong>Date :-</strong> 2025-07-26
-</div>
-</div>
+            <!-- META -->
+            <div class="d-flex justify-content-between fs-4 mb-5">
+                <div>
+                    <strong>Ref No. :-</strong> 2081-82-17591<br>
+                    <strong>Reg. No :-</strong> 2081/82-00015989
+                </div>
+                <div>
+                    <strong>Date :-</strong> 2025-07-26
+                </div>
+            </div>
 
-<h6 class="fw-bold fs-3 text-center my-5">
-Subject : <span class="fw-bold">Recognition and Equivalency</span>
-</h6>
+            <!-- SUBJECT -->
+            <h6 class="fw-bold fs-3 text-center my-5">
+                Subject : <span class="fw-bold">Recognition and Equivalency</span>
+            </h6>
 
-<p class="fs-3" style="line-height:2; min-height:400px; text-align:justify;">
-With regard to the application submitted by <strong>Mr./Ms. Nilesh Kumar Kurmi</strong>
-for the recognition and equivalency of
-<strong>Bihar School Examination Board, Patna, India</strong>,
-the Recognition and Equivalency Determination Committee,
-Curriculum Development Centre, Ministry of Education, Science and Technology,
-Government of Nepal as per its decision dated <strong>2073-06-08</strong>
-recognizes that <strong>Secondary Examination</strong> of the board
-is equivalent to Secondary Level Grade 10 of Nepal.
-</p>
+            <!-- BODY -->
+            <p class="fs-3" style="line-height:2; min-height:400px; text-align:justify;">
+                With regard to the application submitted by
+                <strong>Mr./Ms. Nilesh Kumar Kurmi</strong>
+                for the recognition and equivalency of
+                <strong>Bihar School Examination Board, Patna, India</strong>,
+                the Recognition and Equivalency Determination Committee,
+                Curriculum Development Centre, Ministry of Education, Science and Technology,
+                Government of Nepal as per its decision dated
+                <strong>2073-06-08</strong>
+                recognizes that <strong>Secondary Examination</strong> of the board
+                is equivalent to Secondary Level Grade 10 of Nepal.
+            </p>
 
-<!-- ROTATED BOTTOM (EXACT LIKE SAMPLE) -->
-<div class="rotated-section">
-<div class="rotated-inner">
+            <!-- BOTTOM SECTION -->
+            <div class="rotated-section">
+                <div class="rotated-inner">
 
-<div class="rotated-qr">
-<img src="qrr.png" alt="QR Code">
-</div>
+                    <div class="rotated-qr">
+                        <img src="qrr.png" alt="QR Code">
+                    </div>
 
-<div class="rotated-text">
-<div class="fw-bold mb-3">
-Affiliation, Equivalence and Evaluation<br>Section
-</div>
+                    <div class="rotated-text">
+                        <div class="fw-bold mb-3">
+                            Affiliation, Equivalence and Evaluation<br>Section
+                        </div>
 
-<p>
-<strong>Note :</strong> The concerned body must personally verify the authenticity
-of the student’s certificates from the respective board. This recognition and
-equivalency has been awarded only to the academic degree of the above mentioned
-board. If the documents submitted during application are found to be fraudulent,
-this certificate shall be cancelled at any time.
-</p>
-</div>
+                        <p>
+                            <strong>Note :</strong> The concerned body must personally verify
+                            the authenticity of the student’s certificates from the respective board.
+                            This recognition and equivalency has been awarded only to the academic
+                            degree of the above mentioned board. If the documents submitted during
+                            application are found to be fraudulent, this certificate shall be
+                            cancelled at any time.
+                        </p>
+                    </div>
 
-</div>
-</div>
+                </div>
+            </div>
 
-</div>
-</div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -205,20 +191,20 @@ this certificate shall be cancelled at any time.
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
-function getPDF(){
-html2canvas(document.querySelector(".canvas_div_pdf"),{
-scale:2,useCORS:true
-}).then(function(canvas){
-var img=canvas.toDataURL("image/jpeg",1.0);
-var pdf=new jsPDF("p","pt","a4");
-var w=pdf.internal.pageSize.getWidth();
-var h=canvas.height*w/canvas.width;
-pdf.addImage(img,"JPG",0,0,w,h);
-pdf.save("CDC_LOE.pdf");
-});
+function getPDF() {
+    html2canvas(document.querySelector(".canvas_div_pdf"), {
+        scale: 2,
+        useCORS: true
+    }).then(function(canvas) {
+        var img = canvas.toDataURL("image/jpeg", 1.0);
+        var pdf = new jsPDF("p", "pt", "a4");
+        var w = pdf.internal.pageSize.getWidth();
+        var h = canvas.height * w / canvas.width;
+        pdf.addImage(img, "JPG", 0, 0, w, h);
+        pdf.save("CDC_LOE.pdf");
+    });
 }
 </script>
 
 </body>
 </html>
-
