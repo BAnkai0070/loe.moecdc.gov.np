@@ -32,12 +32,55 @@ body { font-size:16px; }
     margin-top:120px;
 }
 
-.rotated-inner {
-    transform: rotate(180deg);
-    display:flex;
-    gap:30px;
-    align-items:flex-start;
+/* ===== ROTATED BOTTOM SECTION BASE ===== */
+.rotated-section {
+    width: 100%;
+    margin-top: 120px;
+    overflow: visible;   /* IMPORTANT: prevents mobile clipping */
 }
+
+.rotated-inner {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* QR */
+.rotated-qr img {
+    width: 120px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Text */
+.rotated-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 600px;
+    text-align: justify;
+}
+
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
+    .rotated-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+}
+
+    .rotated-qr img {
+        width: 110px;
+        margin-bottom: 15px;
+    
+}
+
+/* 🖨️ PRINT ONLY (CDC STYLE) */
+@media print {
+    .rotated-inner {
+        transform: rotate(180deg);
+        page-break-inside: avoid;
+}
+
 
 .rotated-qr img {
     width:120px;
@@ -178,3 +221,4 @@ pdf.save("CDC_LOE.pdf");
 
 </body>
 </html>
+
